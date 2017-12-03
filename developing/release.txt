@@ -1,0 +1,28 @@
+1.1.0.0 20171206
+  CR: Aktualisierung der service.exe auf prunsrv.exe 1.1.0
+  CR: Aktualisierung auf Seanox Devwex 5.0.0
+  CR: Optimierung vom Build-Prozess
+
+1.0.15.1 20150715
+  BF: Korrektur beim Beenden vom Service
+  BF: Konfiguration, Umstellung von > auf >>
+
+1.0.15.0 20130701
+  BF: Variable "home" muss fest gesetzt werden
+  CR: Vereinheitlichung vom Build-Prozess
+  CR: Aktualisierung der service.exe auf prunsrv.exe 1.0.15  
+
+1.0.5.0 20110311
+  BF: Korrektur der service.bat bei der Verwendung vom Systempfad (PATH) und dem
+      Bibliotheksverzeichnis (LIBARIESPATH)
+  CR: Vereinfachung der Registrierung von VM-Options
+  CR: Aktualisierung der service.exe auf prunsrv.exe 1.0.5
+  CR: Erweiterung um die automatische Verwendung der 32/64 Bit Version
+
+1.0.4.0 20101025
+  BF: Anpassung der Standardkofniguration beim Logging
+      Damit werden die Datei(en) beim Neustart nicht überschrieben.
+  CR: Aktualisierung der service.exe auf prunsrv.exe 1.0.4
+
+1.0.0.0 20101000
+  NT: Service steht als Release bereit
