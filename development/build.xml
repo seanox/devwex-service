@@ -1,0 +1,208 @@
+<?xml version="1.0" ?>
+<project name="devwex-service" default="usage" basedir="..">
+  <target name="usage">
+    <echo>                                                    </echo>
+    <echo> the following targets are available ...            </echo>
+    <echo>                                                    </echo>
+    <echo>   archive   compile, build classes and make        </echo>
+    <echo>             archives for distribution and          </echo> 
+    <echo>             development                            </echo>
+  </target>
+    
+  <property name="workspace" value="${basedir}"/>
+  <property name="workspace.sources" value="${workspace}/sources"/>
+  <property name="workspace.classes" value="${workspace}/program/classes"/>
+  <property name="workspace.program" value="${workspace}/program"/>
+  <property name="workspace.development" value="${workspace}/development"/>
+  <property name="workspace.extras" value="${workspace.development}/extras"/>
+  <property name="workspace.manuals" value="${workspace}/manuals"/>
+  <property name="workspace.system" value="${workspace}/system"/>
+  <property name="workspace.documents" value="${workspace}/documents"/>
+  <property name="workspace.storage" value="${workspace}/storage"/>
+  <property name="workspace.settings" value="${workspace}/.settings"/>
+  
+  <property name="build" value="${workspace}/build"/>
+  <property name="build.sources.filter" value="**/*.java,**/*.txt,**/*.css,**/*.html,**/*.ini"/>
+  <property name="build.project" value="${build}/devwex"/>
+  <property name="build.sources" value="${build.project}/sources"/>
+  <property name="build.classes" value="${build.project}/classes"/>
+  <property name="build.manuals" value="${build.project}/manuals"/>
+  <property name="build.system" value="${build.project}/system"/>
+  <property name="build.documents" value="${build.project}/documents"/>
+  <property name="build.storage" value="${build.project}/storage"/>
+  <property name="build.program" value="${build.project}/program"/>
+  <property name="build.development" value="${build.project}/development"/>
+  <property name="build.extras" value="${build.development}/extras"/>
+  <property name="build.settings" value="${build.project}/.settings"/>
+  
+  <property name="release" value="${workspace}/release"/>
+  
+  <property name="releases" value="${workspace}/releases"/>
+  
+  <property name="compile.target" value="5"/>
+  <property name="compile.source" value="5"/>
+  <property name="compile.debug" value="off"/>
+  <property name="compile.optimize" value="on"/>
+  <property name="compile.deprecation" value="on"/>
+  
+  <path id="classpath">
+    <pathelement location="${workspace.program}/devwex.jar"/>
+  </path>
+  
+  <macrodef name="release-locate">
+    <sequential>
+      <copy file="${workspace.development}/release.txt" tofile="${workspace.development}/release.tmp" overwrite="true"/>
+      <replaceregexp file="${workspace.development}/release.tmp"
+        match="(?s)^\s*([\d\.x]+) (\d{4})([\dx]+).*$" flags="g" byline="false"
+        replace="release.version=\1&#x000D;release.year=\2&#x000D;release.date=\2\3&#x000D;"/>
+      <replaceregexp file="${workspace.development}/release.tmp" match="x+" replace="0000" flags="g" byline="false"/>
+      <loadproperties>
+        <file file="${workspace.development}/release.tmp"/>
+      </loadproperties>
+      <delete file="${workspace.development}/release.tmp"/>
+    </sequential>
+  </macrodef>  
+  
+  <macrodef name="release-insert">
+    <sequential>
+      <replace dir="${build}" includes="${build.sources.filter}"
+        token="#[ant:release-year]" value="${release.year}"/>
+      <replace dir="${build}" includes="${build.sources.filter}"
+        token="#[ant:release-month]" value="${release.month}"/>
+      <replace dir="${build}" includes="${build.sources.filter}"
+        token="#[ant:release-day]" value="${release.day}"/>
+      <replace dir="${build}" includes="${build.sources.filter}"
+        token="#[ant:release-date]" value="${release.date}"/>
+      <replace dir="${build}" includes="${build.sources.filter}"
+        token="#[ant:release-version]" value="${release.version}"/>        
+    </sequential>
+  </macrodef>
+  
+  <scriptdef name="clean" language="javascript">
+    <attribute name="dir"/>
+    <element name="fileset" classname="org.apache.tools.ant.types.FileSet"/>
+    <![CDATA[
+    var echo = function(text) {
+      var echo = project.createTask("echo");
+      echo.setMessage(text);
+      echo.perform();
+    };
+    var basedir = new java.io.File(attributes.get("dir"));
+    var excludes = new Array(String(basedir));
+    var fileset = elements.get("fileset");
+    fileset.forEach(function(fileset, index, array) {
+      var iterator = fileset.iterator();
+      while (iterator.hasNext()) {
+        var file = iterator.next().getFile();
+        excludes.push(String(file));
+        while (file != null
+            && String(file) != String(basedir)) {
+          if (excludes.indexOf(String(file)) < 0)
+            excludes.push(String(file));
+          file = new java.io.File(file.getParent());
+        }
+      }
+    });
+    var clear = function(file, excludes) {
+      if (file.isFile()) {
+        if (excludes.indexOf(String(file)) < 0) {
+          echo("Deleting: " + file);
+          file.delete();
+        }
+      } else if (file.isDirectory()) {
+        var files = Array.prototype.slice.call(file.listFiles(), 0);
+        files.forEach(function(file, index, array) {
+          clear(file, excludes);
+        });
+        if (excludes.indexOf(String(file)) < 0) {
+          echo("Deleting: " + file);
+          file.delete();
+        }
+      }
+    };
+    clear(basedir, excludes);
+    ]]>
+  </scriptdef>   
+  
+  <target name="changes">
+    <copy file="${workspace.development}/release.txt" tofile="${workspace}/CHANGES" overwrite="true"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00E4;" replace="ae" flags="g"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00C4;" replace="Ae" flags="g"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00F6;" replace="oe" flags="g"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00D6;" replace="Oe" flags="g"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00FC;" replace="ue" flags="g"/>
+    <replaceregexp file="${workspace}/CHANGES" match="&#x00DC;" replace="Ue" flags="g"/>
+      
+    <copy file="${workspace.development}/release.txt" tofile="${workspace.development}/release.tmp" overwrite="true"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="^\s+" replace="" byline="false"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="(?s)^(.*?)[\r\n]+\d[\d\. x]+.*$" replace="\1" byline="false"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="^(.*?)\s*$" replace="\1  " flags="g" byline="true"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="^(\d[\.\d x]+)[^\r\n]*" replace="## \1" byline="false"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="^ +([A-Z]+:.*)\s*$" replace="\1" byline="true"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="(?s)[\r\n]+ [^\r\n]+" replace="" flags="g" byline="false"/>  
+    <replaceregexp file="${workspace.development}/release.tmp" match="^(## \d[\.\d]+ \d+)(  )" replace="\1 (summary of the current version)\2" flags="g" byline="true"/>
+    <replaceregexp file="${workspace.development}/release.tmp" match="^(## \d[\.\d]+ [\dx]+)(  )" replace="\1 (summary of the next version)\2" flags="g" byline="true"/>
+    <loadresource property="changes">
+      <file file="${workspace.development}/release.tmp"/>
+    </loadresource>
+    <delete file="${workspace.development}/release.tmp"/>
+    <replaceregexp file="${workspace}/README.md"
+      match="(?si)(# Changes \(Change Log\)\s+).*?(\[Read more\])" flags="g" byline="false"
+      replace="\1${changes}${line.separator}${line.separator}\2"/>
+  </target>
+  
+  <fileset id="fileset.archive.build" dir="${build.project}">
+    <include name="program/service-32.exe"/>
+    <include name="program/service-32.license"/>
+    <include name="program/service-64.exe"/>
+    <include name="program/service-64.license"/>
+    <include name="program/service.bat"/>
+    <include name="program/service.jar"/>
+    <include name="program/service.license"/>
+    <include name="program/service.release"/>
+  </fileset> 
+  
+  <target name="archive">
+    <release-locate/>
+    <delete dir="${build}"/> 
+    <mkdir dir="${build.sources}"/>    
+    <copy todir="${build.sources}">
+      <fileset dir="${workspace.sources}"/>
+    </copy>    
+    <release-insert/>
+    <mkdir dir="${build.classes}"/>    
+    <javac srcdir="${build.sources}" destdir="${build.classes}" 
+      source="${compile.source}" target="${compile.target}" includeantruntime="false"
+      debug="${compile.debug}" optimize="${compile.optimize}" deprecation="${compile.deprecation}">
+      <classpath>
+        <path refid="classpath"/>
+      </classpath>
+      <compilerarg value="-Xlint:-options"/>
+    </javac>
+    <copy todir="${build.classes}">
+      <fileset dir="${workspace.sources}"/>
+    </copy>    
+    <touch datetime="${release.date}" pattern="yyyyMMdd">
+      <fileset dir="${build.classes}"/>
+    </touch>
+    <zip destfile="${workspace.program}/service.jar"
+      basedir="${build.classes}" compress="true" filesonly="true"/>  
+    <delete dir="${build}"/>
+    <mkdir dir="${build.project}"/>
+    <copy todir="${build.program}">
+      <fileset dir="${workspace.program}"/>
+    </copy>
+    <copy tofile="${build.program}/service.license" file="LICENSE"/>
+    <copy tofile="${build.program}/service.license" file="${workspace.development}/release.txt"/>
+    <clean dir="${build.project}">
+      <fileset refid="fileset.archive.build"/>
+    </clean>
+    <delete file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>
+    <zip destfile="${releases}/seanox-${ant.project.name}-${release.version}.zip"
+      basedir="${build}" compress="true" filesonly="false" defaultexcludes="false"/> 
+    <touch datetime="${release.date}" pattern="yyyyMMdd"
+      file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>    
+
+    <delete dir="${build}"/>
+  </target>  
+</project>
