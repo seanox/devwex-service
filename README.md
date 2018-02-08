@@ -30,8 +30,7 @@ specific language governing permissions and limitations under the License.
 
 
 # Downloads
-[Seanox Devwex Service 1.1.0.0](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.0.zip)  
-[Seanox Devwex Service Sources 1.1.0.0](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.0.zip)
+[Seanox Devwex Service 1.1.0.0](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.0.zip)
 (sources are included in the jar file)
 
 
