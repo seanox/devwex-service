@@ -113,8 +113,8 @@ rem -- PART OF CONFIGURATION ---------------------------------------------------
   set init=%init% --Jvm "%jvm%"
 
   set init=%init% --Classpath service.jar;devwex.jar
-  set init=%init% --StdOutput %home%/../storage/output.log
-  set init=%init% --StdError %home%/../storage/error.log
+  set init=%init% --StdOutput "%home%/../storage/output.log"
+  set init=%init% --StdError "%home%/../storage/error.log"
 
   set init=%init% --LogPath "%home%/../storage"
   set init=%init% --LogPrefix service

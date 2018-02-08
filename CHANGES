@@ -1,3 +1,7 @@
+1.1.0.1 2018xxxx
+  BF: Correction of batch file
+      StdOutput/StdError were not used correctly if the path contains spaces.
+      
 1.1.0.0 20171206
   CR: Aktualisierung der service.exe auf prunsrv.exe 1.1.0
   CR: Aktualisierung auf Seanox Devwex 5.0.0
