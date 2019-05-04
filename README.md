@@ -10,7 +10,7 @@ Seanox Software Solutions oder kurz Seanox genannt.
 
 Diese Software unterliegt der Version 2 der Apache License.
 
-Copyright (C) 2017 Seanox Software Solutions
+Copyright (C) 2019 Seanox Software Solutions
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
@@ -30,15 +30,15 @@ specific language governing permissions and limitations under the License.
 
 
 # Downloads
-[Seanox Devwex Service 1.1.0.0](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.0.zip)
-(sources are included in the jar file)
+[Seanox Devwex Service 1.1.0.1](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.1.zip)
+sources are included in the jar file
 
 
 # Installation
 Unpack the zip file into the directory of Seanox Devwex.  
 Configure (if necessary) the file ``./devwex/program/service.bat``.  
-Open a command prompt as administrator.
-Go to the program directory ``./devwex/program`` and call ``servcie.bat -install``.
+Open a command prompt as administrator.  
+Go to the program directory ``./devwex/program`` and call ``servcie.bat -install``.  
 Use ``servcie.bat -update`` to change and ``servcie.bat -uninstall`` to remove the
 service.
 
@@ -48,10 +48,11 @@ Stop: ``net stop Devwex``
 
 
 # Changes (Change Log)
-## 1.1.0.0 20171206 (summary of the current version)  
-CR: Aktualisierung der service.exe auf prunsrv.exe 1.1.0  
-CR: Aktualisierung auf Seanox Devwex 5.0.0  
-CR: Optimierung vom Build-Prozess  
+## 1.1.0.1 20190504 (summary of the current version)  
+BF: Correction of batch file  
+BF: Build: Correction of the integration of the release notes  
+CR: Project: Uniform use of ./LICENSE and ./CHANGES  
+CR: Project: Automatic update of the version in README.md  
 
 [Read more](https://raw.githubusercontent.com/seanox/devwex-service/master/CHANGES)
 
