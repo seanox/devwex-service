@@ -11,29 +11,15 @@
     
   <property name="workspace" value="${basedir}"/>
   <property name="workspace.sources" value="${workspace}/sources"/>
-  <property name="workspace.classes" value="${workspace}/program/classes"/>
   <property name="workspace.program" value="${workspace}/program"/>
   <property name="workspace.development" value="${workspace}/development"/>
-  <property name="workspace.extras" value="${workspace.development}/extras"/>
-  <property name="workspace.manuals" value="${workspace}/manuals"/>
-  <property name="workspace.system" value="${workspace}/system"/>
-  <property name="workspace.documents" value="${workspace}/documents"/>
-  <property name="workspace.storage" value="${workspace}/storage"/>
-  <property name="workspace.settings" value="${workspace}/.settings"/>
   
   <property name="build" value="${workspace}/build"/>
   <property name="build.sources.filter" value="**/*.java,**/*.txt,**/*.css,**/*.html,**/*.ini"/>
   <property name="build.project" value="${build}/devwex"/>
   <property name="build.sources" value="${build.project}/sources"/>
   <property name="build.classes" value="${build.project}/classes"/>
-  <property name="build.manuals" value="${build.project}/manuals"/>
-  <property name="build.system" value="${build.project}/system"/>
-  <property name="build.documents" value="${build.project}/documents"/>
-  <property name="build.storage" value="${build.project}/storage"/>
   <property name="build.program" value="${build.project}/program"/>
-  <property name="build.development" value="${build.project}/development"/>
-  <property name="build.extras" value="${build.development}/extras"/>
-  <property name="build.settings" value="${build.project}/.settings"/>
   
   <property name="release" value="${workspace}/release"/>
   
@@ -220,7 +206,6 @@
       basedir="${build}" compress="true" filesonly="false" defaultexcludes="false"/> 
     <touch datetime="${release.date}" pattern="yyyyMMdd"
       file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>    
-
     <delete dir="${build}"/>
   </target>  
 </project>

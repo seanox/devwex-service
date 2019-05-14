@@ -1,3 +1,7 @@
+1.1.0.2 2020xxxx
+  BF: Project: Update from build script (clean up unused properties)
+  BF: Project: Update of devwex.jar
+
 1.1.0.1 20190504
   BF: Correction of batch file
       StdOutput/StdError were not used correctly if the path contains spaces. 
