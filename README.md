@@ -13,7 +13,7 @@
 
 
 # Description
-Service configures and uses "Seanox Devwex" as a Windows service.  
+Service configures and uses Seanox Devwex as a Windows service.  
 The service can be set to automatically start when the machine boots and will
 continue to run with no user logged onto the machine.
 
@@ -62,11 +62,10 @@ Stop: ``net stop Devwex``
 
 
 # Changes (Change Log)
-## 1.1.0.1 20190504 (summary of the current version)  
-BF: Correction of batch file  
-BF: Build: Correction of the integration of the release notes  
-CR: Project: Uniform use of ./LICENSE and ./CHANGES  
-CR: Project: Automatic update of the version in README.md  
+## 1.2.2.0 2020xxxx (summary of the next version)  
+BF: Project: Update from build script (clean up unused properties)  
+BF: Project: Update of devwex.jar  
+CR: Project: Update of the service.exe to prunsrv.exe 1.2.2  
 
 [Read more](https://raw.githubusercontent.com/seanox/devwex-service/master/CHANGES)
 
