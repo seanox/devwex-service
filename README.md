@@ -1,3 +1,17 @@
+<p>
+  <a href="https://github.com/seanox/devwex/pulls"
+      title="Development is waiting for new issues / requests / ideas">
+    <img src="https://img.shields.io/badge/development-passive-blue?style=for-the-badge">
+  </a>
+  <a href="https://github.com/seanox/devwex/issues">
+    <img src="https://img.shields.io/badge/maintenance-active-green?style=for-the-badge">
+  </a>
+  <a href="http://seanox.de/contact">
+    <img src="https://img.shields.io/badge/support-active-green?style=for-the-badge">
+  </a>
+</p>
+
+
 # Description
 Service configures and uses "Seanox Devwex" as a Windows service.  
 The service can be set to automatically start when the machine boots and will
@@ -10,7 +24,7 @@ Seanox Software Solutions oder kurz Seanox genannt.
 
 Diese Software unterliegt der Version 2 der Apache License.
 
-Copyright (C) 2019 Seanox Software Solutions
+Copyright (C) 2020 Seanox Software Solutions
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
@@ -58,10 +72,9 @@ CR: Project: Automatic update of the version in README.md
 
 
 # Contact
-[Support](http://seanox.de/contact?support)  
-[Development](http://seanox.de/contact?development)  
-[Project](http://seanox.de/contact?service)  
-[Page](http://seanox.de/contact)  
+[Issues](https://github.com/seanox/devwex-service/issues)  
+[Requests](https://github.com/seanox/devwex-service/pulls)  
+[Mail](http://seanox.de/contact)
 
 
 # Thanks!
