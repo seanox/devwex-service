@@ -56,7 +56,7 @@ Go to the program directory ``./devwex/program`` and call ``servcie.bat -install
 Use ``servcie.bat -update`` to change and ``servcie.bat -uninstall`` to remove the
 service.
 
-Control of the service in Windows (command prompt):
+Control of the service in Windows (command prompt):  
 Start: ``net start Devwex``  
 Stop: ``net stop Devwex``
 
