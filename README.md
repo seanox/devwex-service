@@ -52,8 +52,8 @@ sources are included in the jar file
 Unpack the zip file into the directory of Seanox Devwex.  
 Configure (if necessary) the file ``./devwex/program/service.bat``.  
 Open a command prompt as administrator.  
-Go to the program directory ``./devwex/program`` and call ``servcie.bat -install``.  
-Use ``servcie.bat -update`` to change and ``servcie.bat -uninstall`` to remove the
+Go to the program directory ``./devwex/program`` and call ``service.bat -install``.  
+Use ``service.bat -update`` to change and ``service.bat -uninstall`` to remove the
 service.
 
 Control of the service in Windows (command prompt):  
