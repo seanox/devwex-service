@@ -1,9 +1,9 @@
 <p>
-  <a href="https://github.com/seanox/devwex/pulls"
+  <a href="https://github.com/seanox/devwex-service/pulls"
       title="Development is waiting for new issues / requests / ideas">
     <img src="https://img.shields.io/badge/development-passive-blue?style=for-the-badge">
   </a>
-  <a href="https://github.com/seanox/devwex/issues">
+  <a href="https://github.com/seanox/devwex-service/issues">
     <img src="https://img.shields.io/badge/maintenance-active-green?style=for-the-badge">
   </a>
   <a href="http://seanox.de/contact">
@@ -44,7 +44,7 @@ specific language governing permissions and limitations under the License.
 
 
 # Downloads
-[Seanox Devwex Service 1.1.0.1](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.1.0.1.zip)
+[Seanox Devwex Service 1.2.2.0](https://github.com/seanox/devwex-service/raw/master/releases/seanox-devwex-service-1.2.2.0.zip)
 sources are included in the jar file
 
 
@@ -62,7 +62,7 @@ Stop: ``net stop Devwex``
 
 
 # Changes (Change Log)
-## 1.2.2.0 2020xxxx (summary of the next version)  
+## 1.2.2.0 20200905 (summary of the current version)  
 BF: Project: Update from build script (clean up unused properties)  
 BF: Project: Update of devwex.jar  
 CR: Project: Update of the service.exe to prunsrv.exe 1.2.2  

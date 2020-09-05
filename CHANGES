@@ -1,4 +1,4 @@
-1.2.2.0 2020xxxx
+1.2.2.0 20200905
   BF: Project: Update from build script (clean up unused properties)
   BF: Project: Update of devwex.jar
   CR: Project: Update of the service.exe to prunsrv.exe 1.2.2
@@ -17,7 +17,7 @@
 
 1.0.15.1 20150715
   BF: Korrektur beim Beenden vom Service
-  BF: Konfiguration, Umstellung von > auf >>
+  BF: Konfiguration, Umstellung von >> auf >
 
 1.0.15.0 20130701
   BF: Variable "home" muss fest gesetzt werden

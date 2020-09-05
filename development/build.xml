@@ -25,8 +25,8 @@
   
   <property name="releases" value="${workspace}/releases"/>
   
-  <property name="compile.target" value="5"/>
-  <property name="compile.source" value="5"/>
+  <property name="compile.target" value="8"/>
+  <property name="compile.source" value="8"/>
   <property name="compile.debug" value="off"/>
   <property name="compile.optimize" value="on"/>
   <property name="compile.deprecation" value="on"/>
@@ -39,8 +39,8 @@
     <sequential>
       <copy file="${workspace}/CHANGES" tofile="${workspace.development}/release.tmp" overwrite="true"/>
       <replaceregexp file="${workspace.development}/release.tmp"
-        match="(?s)^\s*([\d\.x]+) (\d{4})([\dx]+).*$" flags="g" byline="false"
-        replace="release.version=\1&#x000D;release.year=\2&#x000D;release.date=\2\3&#x000D;"/>
+          match="(?s)^\s*([\d\.x]+) (\d{4})([\dx]+).*$" flags="g" byline="false"
+          replace="release.version=\1&#x000D;release.year=\2&#x000D;release.date=\2\3&#x000D;"/>
       <replaceregexp file="${workspace.development}/release.tmp" match="x+" replace="0000" flags="g" byline="false"/>
       <loadproperties>
         <file file="${workspace.development}/release.tmp"/>
@@ -52,15 +52,15 @@
   <macrodef name="release-insert">
     <sequential>
       <replace dir="${build}" includes="${build.sources.filter}"
-        token="#[ant:release-year]" value="${release.year}"/>
+          token="#[ant:release-year]" value="${release.year}"/>
       <replace dir="${build}" includes="${build.sources.filter}"
-        token="#[ant:release-month]" value="${release.month}"/>
+          token="#[ant:release-month]" value="${release.month}"/>
       <replace dir="${build}" includes="${build.sources.filter}"
-        token="#[ant:release-day]" value="${release.day}"/>
+          token="#[ant:release-day]" value="${release.day}"/>
       <replace dir="${build}" includes="${build.sources.filter}"
-        token="#[ant:release-date]" value="${release.date}"/>
+          token="#[ant:release-date]" value="${release.date}"/>
       <replace dir="${build}" includes="${build.sources.filter}"
-        token="#[ant:release-version]" value="${release.version}"/>        
+          token="#[ant:release-version]" value="${release.version}"/>        
     </sequential>
   </macrodef>
   
@@ -132,14 +132,14 @@
     </loadresource>
     <delete file="${workspace.development}/release.tmp"/>
     <replaceregexp file="${workspace}/README.md"
-      match="(?si)(# Changes \(Change Log\)\s+).*?(\[Read more\])" flags="g" byline="false"
-      replace="\1${changes}${line.separator}${line.separator}\2"/>
+        match="(?si)(# Changes \(Change Log\)\s+).*?(\[Read more\])" flags="g" byline="false"
+        replace="\1${changes}${line.separator}${line.separator}\2"/>
     <tstamp>
       <format property="now.year" pattern="yyyy"/>
     </tstamp>    
     <replaceregexp file="${workspace}/README.md"
-      match="(?si)(?&lt;=\(C\)\s)\d{4}\b" flags="g" byline="true"
-      replace="${now.year}"/>  
+        match="(?si)(?&lt;=\(C\)\s)\d{4}\b" flags="g" byline="true"
+        replace="${now.year}"/>  
     
     <copy file="${workspace}/CHANGES" tofile="${workspace}/CHANGES.tmp" overwrite="true"/>
     <replaceregexp file="${workspace}/CHANGES.tmp" match="(?s)(?:^|^(?:.*?[\r\n]+))(\d(?:\.\d)+) \d+\s.*$" replace="release.version.current=\1" byline="false"/>
@@ -148,11 +148,11 @@
     </loadproperties>
     <delete file="${workspace}/CHANGES.tmp"/>
     <replaceregexp file="${workspace}/README.md"
-      match="(Seanox Devwex Service )\d+(\.\d+)*" flags="g" byline="false"
-      replace="\1${release.version.current}"/>
+        match="(Seanox Devwex Service )\d+(\.\d+)*" flags="g" byline="false"
+        replace="\1${release.version.current}"/>
     <replaceregexp file="${workspace}/README.md"
-      match="(seanox-devwex-service-(?:test-)*)\d+(?:\.\d+)*((?:-src)*\.zip)" flags="g" byline="false"
-      replace="\1${release.version.current}\2"/>      
+        match="(seanox-devwex-service-(?:test-)*)\d+(?:\.\d+)*((?:-src)*\.zip)" flags="g" byline="false"
+        replace="\1${release.version.current}\2"/>      
   </target>
   
   <fileset id="fileset.archive.build" dir="${build.project}">
@@ -176,8 +176,8 @@
     <release-insert/>
     <mkdir dir="${build.classes}"/>    
     <javac srcdir="${build.sources}" destdir="${build.classes}" 
-      source="${compile.source}" target="${compile.target}" includeantruntime="false"
-      debug="${compile.debug}" optimize="${compile.optimize}" deprecation="${compile.deprecation}">
+        source="${compile.source}" target="${compile.target}" includeantruntime="false"
+        debug="${compile.debug}" optimize="${compile.optimize}" deprecation="${compile.deprecation}">
       <classpath>
         <path refid="classpath"/>
       </classpath>
@@ -190,7 +190,7 @@
       <fileset dir="${build.classes}"/>
     </touch>
     <zip destfile="${workspace.program}/service.jar"
-      basedir="${build.classes}" compress="true" filesonly="true"/>  
+        basedir="${build.classes}" compress="true" filesonly="true"/>  
     <delete dir="${build}"/>
     <mkdir dir="${build.project}"/>
     <copy todir="${build.program}">
@@ -203,9 +203,9 @@
     </clean>
     <delete file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>
     <zip destfile="${releases}/seanox-${ant.project.name}-${release.version}.zip"
-      basedir="${build}" compress="true" filesonly="false" defaultexcludes="false"/> 
+        basedir="${build}" compress="true" filesonly="false" defaultexcludes="false"/> 
     <touch datetime="${release.date}" pattern="yyyyMMdd"
-      file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>    
+        file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>    
     <delete dir="${build}"/>
   </target>  
 </project>
