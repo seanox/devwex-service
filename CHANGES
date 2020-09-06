@@ -1,3 +1,6 @@
+1.2.2.1 2021xxxx
+  BF: Sources: (Re-)Formatting, translation, code minimization
+
 1.2.2.0 20200905
   BF: Project: Update from build script (clean up unused properties)
   BF: Project: Update of devwex.jar
