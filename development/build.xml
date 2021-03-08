@@ -13,15 +13,13 @@
   <property name="workspace.sources" value="${workspace}/sources"/>
   <property name="workspace.program" value="${workspace}/program"/>
   <property name="workspace.development" value="${workspace}/development"/>
-  
+
   <property name="build" value="${workspace}/build"/>
-  <property name="build.sources.filter" value="**/*.java,**/*.txt,**/*.css,**/*.html,**/*.ini"/>
+  <property name="build.sources.filter" value="**/*.java,**/*.txt,**/*.css,**/*.html,**/*.ini,**/*.bat"/>
   <property name="build.project" value="${build}/devwex"/>
   <property name="build.sources" value="${build.project}/sources"/>
   <property name="build.classes" value="${build.project}/classes"/>
   <property name="build.program" value="${build.project}/program"/>
-  
-  <property name="release" value="${workspace}/release"/>
   
   <property name="releases" value="${workspace}/releases"/>
   
@@ -63,52 +61,6 @@
           token="#[ant:release-version]" value="${release.version}"/>        
     </sequential>
   </macrodef>
-  
-  <scriptdef name="clean" language="javascript">
-    <attribute name="dir"/>
-    <element name="fileset" classname="org.apache.tools.ant.types.FileSet"/>
-    <![CDATA[
-    var echo = function(text) {
-      var echo = project.createTask("echo");
-      echo.setMessage(text);
-      echo.perform();
-    };
-    var basedir = new java.io.File(attributes.get("dir"));
-    var excludes = new Array(String(basedir));
-    var fileset = elements.get("fileset");
-    fileset.forEach(function(fileset, index, array) {
-      var iterator = fileset.iterator();
-      while (iterator.hasNext()) {
-        var file = iterator.next().getFile();
-        excludes.push(String(file));
-        while (file != null
-            && String(file) != String(basedir)) {
-          if (excludes.indexOf(String(file)) < 0)
-            excludes.push(String(file));
-          file = new java.io.File(file.getParent());
-        }
-      }
-    });
-    var clear = function(file, excludes) {
-      if (file.isFile()) {
-        if (excludes.indexOf(String(file)) < 0) {
-          echo("Deleting: " + file);
-          file.delete();
-        }
-      } else if (file.isDirectory()) {
-        var files = Array.prototype.slice.call(file.listFiles(), 0);
-        files.forEach(function(file, index, array) {
-          clear(file, excludes);
-        });
-        if (excludes.indexOf(String(file)) < 0) {
-          echo("Deleting: " + file);
-          file.delete();
-        }
-      }
-    };
-    clear(basedir, excludes);
-    ]]>
-  </scriptdef>   
   
   <target name="changes">
     <replaceregexp file="${workspace}/CHANGES" match="&#x00E4;" replace="ae" flags="g"/>
@@ -154,27 +106,17 @@
         match="(seanox-devwex-service-(?:test-)*)\d+(?:\.\d+)*((?:-src)*\.zip)" flags="g" byline="false"
         replace="\1${release.version.current}\2"/>      
   </target>
-  
-  <fileset id="fileset.archive.build" dir="${build.project}">
-    <include name="program/service-32.exe"/>
-    <include name="program/service-32.license"/>
-    <include name="program/service-64.exe"/>
-    <include name="program/service-64.license"/>
-    <include name="program/service.bat"/>
-    <include name="program/service.jar"/>
-    <include name="program/service.license"/>
-    <include name="program/service.release"/>
-  </fileset> 
-  
+
   <target name="archive">
     <release-locate/>
     <delete dir="${build}"/> 
-    <mkdir dir="${build.sources}"/>    
+    <mkdir dir="${build.sources}"/>
+    <copy file="${workspace.program}/service.bat" todir="${build.sources}"/>
     <copy todir="${build.sources}">
       <fileset dir="${workspace.sources}"/>
     </copy>    
     <release-insert/>
-    <mkdir dir="${build.classes}"/>    
+    <mkdir dir="${build.classes}"/>
     <javac srcdir="${build.sources}" destdir="${build.classes}" 
         source="${compile.source}" target="${compile.target}" includeantruntime="false"
         debug="${compile.debug}" optimize="${compile.optimize}" deprecation="${compile.deprecation}">
@@ -185,7 +127,7 @@
     </javac>
     <copy todir="${build.classes}">
       <fileset dir="${workspace.sources}"/>
-    </copy>    
+    </copy>
     <touch datetime="${release.date}" pattern="yyyyMMdd">
       <fileset dir="${build.classes}"/>
     </touch>
@@ -196,16 +138,14 @@
     <copy todir="${build.program}">
       <fileset dir="${workspace.program}"/>
     </copy>
+    <release-insert/>
     <copy file="LICENSE" tofile="${build.program}/service.license" />
     <copy file="CHANGES" tofile="${build.program}/service.release" />
-    <clean dir="${build.project}">
-      <fileset refid="fileset.archive.build"/>
-    </clean>
     <delete file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>
     <zip destfile="${releases}/seanox-${ant.project.name}-${release.version}.zip"
         basedir="${build}" compress="true" filesonly="false" defaultexcludes="false"/> 
     <touch datetime="${release.date}" pattern="yyyyMMdd"
-        file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>    
+        file="${releases}/seanox-${ant.project.name}-${release.version}.zip"/>
     <delete dir="${build}"/>
-  </target>  
+  </target>
 </project>
