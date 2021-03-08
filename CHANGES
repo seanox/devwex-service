@@ -42,7 +42,7 @@
   CR: Erweiterung um die automatische Verwendung der 32/64 Bit Version
 
 1.0.4.0 20101025
-  BF: Anpassung der Standardkofniguration beim Logging
+  BF: Anpassung der Standardkonfiguration beim Logging
       Damit werden die Datei(en) beim Neustart nicht ueberschrieben.
   CR: Aktualisierung der service.exe auf prunsrv.exe 1.0.4
 
