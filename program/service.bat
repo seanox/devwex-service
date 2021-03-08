@@ -65,7 +65,7 @@ rem ----------------------------------------------------------------------------
   echo    install
   echo    update
   echo    uninstall
-  net session >%~n0.log 2>&1
+  net session >nul 2>&1
   if not %errorLevel% == 0 (
     echo.
     echo This script must run as Administrator.
@@ -164,7 +164,7 @@ rem ----------------------------------------------------------------------------
   if not "%jvms%" == "" set init=%init% --JvmMs=%jvms%
   if not "%jvmx%" == "" set init=%init% --JvmMx=%jvmx%
 
-  sc query %name% >%~n0.log 2>&1
+  sc query %name% >nul 2>&1
   if "%errorLevel%" == "%lastError%" (
     echo %label%: Service is still present and will be stopped and removed
     %service% //DS//%name%
@@ -228,7 +228,7 @@ rem -- PART OF CONFIGURATION ---------------------------------------------------
   )
   for %%i in ("%home%\%service%") do echo    %%~fi
 
-  sc query %name% >%~n0.log 2>&1
+  sc query %name% >nul 2>&1
   if "%errorLevel%" == "0" (
     echo %label%: Service is still present and will be stopped and removed
     %service% //DS//%name%
