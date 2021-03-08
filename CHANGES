@@ -1,5 +1,12 @@
-1.2.2.1 2021xxxx
+1.2.4.0 2021xxxx
   BF: Sources: (Re-)Formatting, translation, code minimization
+  CR: Service: Update of the service.exe to prunsrv.exe 1.2.4
+  CR: Batch: Extension of the outputs / error outputs
+  CR: Batch: Grant access permission to the AppDirectory
+  CR: Batch: Change in the location of batch scripts for runtime extensions
+      to ..\runtime\*.cmd ..\runtime\*.bat
+  CR: Batch: Change of commands, omission from minus
+      to install, update, uninstall (e.g. service.bat install)
 
 1.2.2.0 20200905
   BF: Project: Update from build script (clean up unused properties)
