@@ -14,8 +14,8 @@
 
 # Description
 Service configures and uses Seanox Devwex as a Windows service.  
-The service can be set to automatically start when the machine boots and will
-continue to run with no user logged onto the machine.
+Seanox starts with the start of Windows, runs in the background and does not
+require a user login.
 
 
 # Licence Agreement
