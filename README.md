@@ -16,7 +16,7 @@ Service configures and uses Seanox Devwex as a Windows service.
 Seanox starts with the start of Windows, runs in the background and does not
 require a user login.
 
-__The project has been integrated into [Seanox Devwex](https://github.com/seanox/devwex)
+__The project has been integrated into [Seanox Devwex](https://github.com/seanox/devwex)__
 __and development in this repository has been ended.__  
 __The respository is still available until the end of 2021 and will then be deleted.__
 
