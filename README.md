@@ -1,10 +1,9 @@
 <p>
-  <a href="https://github.com/seanox/devwex-service/pulls"
-      title="Development is waiting for new issues / requests / ideas">
-    <img src="https://img.shields.io/badge/development-passive-blue?style=for-the-badge">
+  <a>
+    <img src="https://img.shields.io/badge/development-ended-lightgrey?style=for-the-badge">
   </a>
-  <a href="https://github.com/seanox/devwex-service/issues">
-    <img src="https://img.shields.io/badge/maintenance-active-green?style=for-the-badge">
+  <a>
+    <img src="https://img.shields.io/badge/maintenance-ended-lightgrey?style=for-the-badge">
   </a>
   <a href="http://seanox.de/contact">
     <img src="https://img.shields.io/badge/support-active-green?style=for-the-badge">
@@ -16,6 +15,11 @@
 Service configures and uses Seanox Devwex as a Windows service.  
 Seanox starts with the start of Windows, runs in the background and does not
 require a user login.
+
+__The project has been integrated into [Seanox Devwex](/seanox/devwex) and__
+__development in this repository has been ended.__  
+__The respository is still available until the end of 2021 and will then be deleted.__
+
 
 
 # Licence Agreement
